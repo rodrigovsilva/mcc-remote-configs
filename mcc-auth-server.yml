@@ -33,6 +33,7 @@ logging:
         console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
         file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
     file: logs/spring-boot-logging.log
+    
 #spring:
     #datasource:
     #    data: classpath:/sql/data.sql
@@ -61,7 +62,7 @@ spring:
         database-platform: org.hibernate.dialect.H2Dialect
         generate-ddl: true
         hibernate:
-            ddl-auto: auto
+            ddl-auto: create
         properties:
             hibernate:
                 show_sql: true

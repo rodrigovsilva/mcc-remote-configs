@@ -1,2 +1,2 @@
-app:
-  timeout: 10
+server:
+  port: 9092

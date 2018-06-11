@@ -49,9 +49,9 @@ spring:
                 web-allow-others: false
     jpa:
         database-platform: org.hibernate.dialect.H2Dialect
-        generate-ddl: true
+        generate-ddl: false
         hibernate:
-            ddl-auto: create
+            ddl-auto: false
         properties:
             hibernate:
                 show_sql: true

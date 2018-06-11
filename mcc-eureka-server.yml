@@ -11,3 +11,14 @@ eureka:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
   server:
     wait-time-in-ms-when-sync-empty: 3000
+
+
+logging:
+  level:
+    org.springframework.web: ALL
+    org.hibernate: ALL
+    com.rvfs.challenge: ALL
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file: logs/spring-boot-logging.log

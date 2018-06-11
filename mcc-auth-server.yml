@@ -12,39 +12,8 @@ eureka:
             defaultZone: http://${eureka.instance.hostname}:${eureka.instance.port}/eureka/
     server:
         wait-time-in-ms-when-sync-empty: 3000
-
-security:
-    oauth2:
-        client:
-            access-token-validity-seconds: 1800
-            authorized-grant-types: password,refresh_token
-            client-id: coderef
-            client-secret: $2a$10$p9Pk0fQNAQSesI4vuvKA0OZanDD2
-            resource-ids: resources
-            scope: read,write
-
-### Log settings
-logging:
-    level:
-        org.springframework.web: ALL
-        org.hibernate: ALL
-        com.rvfs.challenge: ALL
-    pattern:
-        console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
-        file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
-    file: logs/spring-boot-logging.log
-    
-#spring:
-    #datasource:
-    #    data: classpath:/sql/data.sql
-    #    driver-class-name: com.mysql.jdbc.Driver
-    #    password: '1234'
-    #    platform: mysql
-    #    schema: classpath:/sql/schema.sql
-    #    url: jdbc:mysql://localhost/oauth?verifyServerCertificate=false&useSSL=false&requireSSL=false
-    #    username: root*/
- 
- # db configuration
+        
+# db configuration
 spring:
     datasource:
         url: jdbc:h2:mem:authdb;DB_CLOSE_DELAY=- 1;DB_CLOSE_ON_EXIT=FALSE
@@ -53,18 +22,31 @@ spring:
         password:
     h2:
         console:
-            path: /h2-console
-            enabled: true
-            settings:
-                trace: true
-                web-allow-others: false
-    jpa:
-        database-platform: org.hibernate.dialect.H2Dialect
-        generate-ddl: true
-        hibernate:
-            ddl-auto: create
-        properties:
-            hibernate:
-                show_sql: true
-                use_sql_comments: false
-                format_sql: true
+        path: /h2-console
+        enabled: true
+
+#security configuration
+security:
+    oauth2:
+        resource:
+            id: oauth2_application
+
+
+#access token expiration in seconds
+access_token:
+    validity_period: 3600
+
+#refresh token expiration in seconds
+refresh_token:
+    validity_period: 10000
+
+## Log settings
+logging:
+    level:
+        org.springframework.web: ALL
+        org.hibernate: ALL
+        com.rvfs.challenge: DEBUG
+    pattern:
+        console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+        file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+    file: logs/spring-boot-logging.log
